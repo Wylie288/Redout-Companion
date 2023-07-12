@@ -30,13 +30,13 @@ ini_open("options")
     if os_type = os_windows
         global.dim_mode = ini_read_real("dim","on",0)
     if os_type = os_android
-        global.dim_mode = ini_read_real("dim","on",1)
+        global.dim_mode = ini_read_real("dim","on",0)
     global.dim_intensity = ini_read_real("dim","intensity",0.8)
     global.dim_time = ini_read_real("dim","time",40)
     
     global.allowRepeat = ini_read_real("repeat","repeat",0)
     
-    global.above_target = ini_read_real("above","above",1)
+    global.above_target = ini_read_real("above","above",0)
     global.decimal = ini_read_real("decimal","decimal",0)
 ini_close()
 </string>

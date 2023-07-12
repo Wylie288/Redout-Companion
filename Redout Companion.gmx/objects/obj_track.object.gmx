@@ -29,6 +29,7 @@
 image_speed = 0
 pclass = global.class
 pmode = global.mode
+global.trackList = ds_list_create()
 
 </string>
           </argument>
@@ -51,22 +52,32 @@ pmode = global.mode
           <argument>
             <kind>1</kind>
             <string>///Create Tracklist
-ini_open(global.mode)
-global.trackList = ds_list_create()
-for (i=0; i&lt;global.tracks+(global.tracks/5); i+=1)
-    {
-    if ini_read_real(global.class,string(i),0) != 0
-        ds_list_add(global.trackList,i)
-    }
-ds_list_shuffle(global.trackList)   
-global.trackListI = 0
-ini_close()
-
-if ds_list_size(global.trackList) = 0
+if global.above_target = 1
 {
-    show_message("Please enter at least one time to use the random track feature")
-    room_goto(rm_track_list)
-    exit
+    ini_open(global.mode)
+    for (i=0; i&lt;global.tracks+(global.tracks/5); i+=1)
+        {
+        if ini_read_real(global.class,string(i),0) != 0
+            ds_list_add(global.trackList,i)
+        }
+    ds_list_shuffle(global.trackList)   
+    global.trackListI = 0
+    ini_close()
+    
+    if ds_list_size(global.trackList) = 0
+    {
+        show_message("No track data disabling above target times")
+        global.above_target = 0
+        room_restart()
+        exit
+    }
+}
+else
+{
+    global.trackList = ds_list_create()
+    for (i=0; i&lt;global.tracks+(global.tracks/5); i+=1)
+            ds_list_add(global.trackList,i)
+    ds_list_shuffle(global.trackList)  
 }
 
 

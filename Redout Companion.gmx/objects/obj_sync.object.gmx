@@ -28,6 +28,79 @@
             <string>//Declaration
 image_speed = 0
 visible = 0
+useCache = false
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Data
+colorList[0] = "Bubblegum"
+colorList[1] = "Candy"
+colorList[2] = "Dark Ruby"
+colorList[3] = "Deep Sky Blue"
+colorList[4] = "Firecracker"
+colorList[5] = "Frozen Water"
+colorList[6] = "Golden Scarlett"
+colorList[7] = "Golden Lime"
+colorList[8] = "La Roja"
+colorList[9] = "Margarita"
+colorList[10] = "Oz Spider"
+colorList[11] = "Pink Punk"
+colorList[12] = "Pitch Black"
+colorList[13]= "Revenge of the Ship"
+colorList[14] = "Sapphire"
+colorList[15] = "Sea Emerald"
+colorList[16] = "Shiny White"
+colorList[17] = "Sneaker"
+colorList[18] = "Tangerine Sunset"
+colorList[19] = "White Widow"
+colorList[20] = "Zebra"
+colorListSize = 21
+
+liveryList[0] = "CAMO"
+liveryList[1] = "DANGER"
+liveryList[2] = "FRACTURE"
+liveryList[3] = "FRAGMENT"
+liveryList[4] = "MECHA"
+liveryList[5] = "VINE"
+liveryList[6] = "WILD"
+liveryList[7] = "ZEPHYR"
+liveryListSize = 8
+
+shipList[0] = "ESA"
+shipList[1] = "KOENIGG"
+shipList[2] = "SULHA"
+shipList[3] = "CONQUEROR"
+shipList[4] = "ASERA"
+shipList[5] = "LUNARE"
+shipListSize = 6
+
+classList[0] = "I"
+classList[1] = "II"
+classList[2] = "III"
+classList[3] = "IV"
+classListSize = 4
+
+if useCache = false
+    fileName = "json"
+else
+    fileName = "jsonCache.json"
 </string>
           </argument>
         </arguments>
@@ -149,9 +222,14 @@ visible = 0
             <string>if global.dim = 0
 if visible = 1
 {
-    if (string_digits(text) = text) and (text != "")
-        async_json = http_get("https://steamcommunity.com/inventory/"+text+"/517710/2?l=english&amp;count=5000")
+    if useCache = false
+        if (string_digits(text) = text) and (text != "")
+            async_json = http_get("https://steamcommunity.com/inventory/"+text+"/517710/2?l=english&amp;count=5000")
+    if useCache = true
+        color_json()
 }
+
+//"https://steamcommunity.com/inventory/76561198048878166/517710/2?l=english&amp;count=5000"
 </string>
           </argument>
         </arguments>
