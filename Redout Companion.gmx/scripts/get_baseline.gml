@@ -1,6 +1,3 @@
-
-
-
 total = 0
 global.baseline = 0
 if global.mode = "boss"

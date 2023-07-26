@@ -29,6 +29,7 @@
 image_speed = 0
 pclass = global.class
 pmode = global.mode
+pabove = global.above_target
 global.trackList = ds_list_create()
 
 </string>
@@ -56,7 +57,7 @@ if global.above_target = 1
 {
     ini_open(global.mode)
     for (i=0; i&lt;global.tracks+(global.tracks/5); i+=1)
-        {
+        { 
         if ini_read_real(global.class,string(i),0) != 0
             ds_list_add(global.trackList,i)
         }
@@ -68,15 +69,26 @@ if global.above_target = 1
     {
         show_message("No track data disabling above target times")
         global.above_target = 0
+        ini_open("options")
+        ini_write_real("above","above",global.above_target)
+        ini_close()
         room_restart()
         exit
     }
 }
 else
 {
-    global.trackList = ds_list_create()
-    for (i=0; i&lt;global.tracks+(global.tracks/5); i+=1)
-            ds_list_add(global.trackList,i)
+    global.trackListI = 0
+    if global.mode != "boss"
+    {
+        for (i=0; i&lt;global.tracks; i+=1)
+                ds_list_add(global.trackList,i)
+    }
+    else
+    {
+        for (i=60; i&lt;global.tracks+(global.tracks/5); i+=1)
+                ds_list_add(global.trackList,i)
+    }
     ds_list_shuffle(global.trackList)  
 }
 
@@ -166,8 +178,14 @@ else
 if pmode != global.mode
     create_track_list()
     
+if pabove != global.above_target
+{
+    create_track_list()
+}
+    
 pclass = global.class
 pmode = global.mode
+pabove = global.above_target
 </string>
           </argument>
         </arguments>
@@ -260,7 +278,10 @@ draw_text(925,100,global.trackNames[track])
 if global.mode != "boss"
 {
     time = string_format(global.yourTimes[track], 1, 3)
-    baseline = (real(time)/global.tracktimes[track,0])
+    if time = 0
+        baseline = 0
+    else
+        baseline = (real(time)/global.tracktimes[track,0])
 }
 else
 {

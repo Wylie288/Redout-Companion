@@ -28,6 +28,8 @@
             <string>image_speed = 0
 image_index = global.above_target
 down = 0
+
+
 </string>
           </argument>
         </arguments>
@@ -242,6 +244,7 @@ if down = 1
 draw_sprite(sprite_index,2,x,y)
 if down = 2
 draw_sprite(sprite_index,3,x,y)
+image_index = global.above_target
 </string>
           </argument>
         </arguments>

@@ -18,8 +18,9 @@ if room = rm_random
         {
             show_message("No track data disabling above target times")
             global.above_target = 0
-            room_restart()
-            exit
+            ini_open("options")
+            ini_write_real("above","above",global.above_target)
+            ini_close()
         }
         
         if global.above_target = 1
@@ -53,11 +54,20 @@ if room = rm_random
             }
         }
     }
-    else
+    if global.above_target = 0
     {
+        global.trackListI = 0
         ds_list_clear(global.trackList)
-        for (i=0; i<global.tracks+(global.tracks/5); i+=1)
-                ds_list_add(global.trackList,i)
+        if global.mode != "boss"
+        {
+            for (i=0; i<global.tracks; i+=1)
+                    ds_list_add(global.trackList,i)
+        }
+        else
+        {
+            for (i=60; i<global.tracks+(global.tracks/5); i+=1)
+                    ds_list_add(global.trackList,i)
+        }
         ds_list_shuffle(global.trackList)  
     }
     if global.mode != "boss"
