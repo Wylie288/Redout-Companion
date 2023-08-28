@@ -59,7 +59,7 @@ if (jsonMap[? "success"] = 1)   {
     room_goto(rm_colors)
 }
 else    {
-    show_message("Inventory Sync Failed")
+    show_message_async("Inventory Sync Failed")
     show_debug_message("JSON recieved, success != 0")
 }
 

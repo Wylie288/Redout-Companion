@@ -135,14 +135,14 @@ ini_close()
         else
         {
             text = ""
-            show_message("Invalid steamID")
+            show_message_async("Invalid steamID")
         }
         
     }
     else
     {
         text = ""
-        show_message("Invalid steamID")
+        show_message_async("Invalid steamID")
     }
 }
 </string>

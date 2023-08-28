@@ -89,6 +89,7 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\get_time.gml</script>
+    <script>scripts\getTimeOld.gml</script>
     <script>scripts\get_baseline.gml</script>
     <script>scripts\find_time.gml</script>
     <script>scripts\find_delta.gml</script>

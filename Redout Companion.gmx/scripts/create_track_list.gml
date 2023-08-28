@@ -16,7 +16,7 @@ if room = rm_random
         
         if ds_list_size(global.trackList) = 0
         {
-            show_message("No track data disabling above target times")
+            show_message_async("No track data disabling above target times")
             global.above_target = 0
             ini_open("options")
             ini_write_real("above","above",global.above_target)
